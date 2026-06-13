@@ -15,7 +15,6 @@
             --text-muted: #6c757d;
             --accent: #495057;
             --accent-light: #f1f3f5;
-            --c1-color: #495057;
             --radius: 6px;
         }
 
@@ -24,49 +23,53 @@
 
         .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
 
-        /* Sistema de Abas (Tabs) */
+        /* Tabs */
         .tabs { display: flex; background: #fff; border: 1px solid var(--border); border-radius: var(--radius) var(--radius) 0 0; overflow: hidden; }
         .tab-btn { flex: 1; padding: 1rem; background: none; border: none; border-bottom: 3px solid transparent; font-weight: 600; font-size: 1rem; color: var(--text-muted); cursor: pointer; transition: all 0.2s; }
         .tab-btn.active { color: var(--text-dark); border-bottom-color: var(--accent); background: var(--bg-main); }
         .tab-content { display: none; background: var(--surface); border: 1px solid var(--border); border-top: none; padding: 2rem; border-radius: 0 0 var(--radius) var(--radius); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .tab-content.active { display: block; }
 
-        /* Grid layouts */
+        /* Grids */
         .grid-env { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-        .scenarios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        @media (max-width: 900px) { .scenarios-grid { grid-template-columns: 1fr; } }
+        .scenarios-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; transition: grid-template-columns 0.3s ease; }
+        .scenarios-grid.has-3 { grid-template-columns: repeat(3, 1fr); }
+        @media (max-width: 900px) { .scenarios-grid, .scenarios-grid.has-3 { grid-template-columns: 1fr; } }
 
         .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
         .form-header { display: flex; align-items: center; justify-content: space-between; }
-        .form-header label { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent); }
+        .form-header label { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: var(--accent); }
         
-        input, select { padding: 0.6rem; border: 1px solid var(--border-dark); border-radius: var(--radius); font-size: 0.95rem; color: var(--text-dark); background: #fff; width: 100%; }
+        input, select { padding: 0.6rem; border: 1px solid var(--border-dark); border-radius: var(--radius); font-size: 0.95rem; width: 100%; }
         input:focus, select:focus { outline: none; border-color: var(--accent); }
         
-        /* Sliders Sincronizados */
+        /* Sliders */
         .sync-container { display: flex; flex-direction: column; gap: 0.25rem; }
         input[type="range"] { -webkit-appearance: none; appearance: none; height: 6px; background: var(--border-dark); border-radius: 3px; border: none; padding: 0; }
         input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); cursor: pointer; }
 
-        /* Tooltips Mobile-Friendly */
+        /* Tooltips */
         .tooltip-wrapper { position: relative; display: inline-flex; }
         .icon-help { display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: var(--border-dark); color: #fff; border-radius: 50%; font-size: 0.7rem; font-weight: bold; cursor: help; outline: none; }
-        .tooltip-text { visibility: hidden; background-color: var(--text-dark); color: #fff; text-align: center; border-radius: 4px; padding: 0.6rem; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.75rem; font-weight: normal; opacity: 0; transition: opacity 0.2s; line-height: 1.3; pointer-events: none; }
+        .tooltip-text { visibility: hidden; background-color: var(--text-dark); color: #fff; text-align: center; border-radius: 4px; padding: 0.6rem; position: absolute; z-index: 10; bottom: 130%; left: 50%; transform: translateX(-50%); width: 220px; font-size: 0.75rem; opacity: 0; transition: opacity 0.2s; line-height: 1.3; pointer-events: none; }
         .tooltip-text::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -5px; border-width: 5px; border-style: solid; border-color: var(--text-dark) transparent transparent transparent; }
         .icon-help:hover + .tooltip-text, .icon-help:focus + .tooltip-text { visibility: visible; opacity: 1; }
 
-        /* Cards de Cenário */
-        .scenario-card { background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; border-top: 4px solid var(--accent); }
-        .scenario-card h3 { font-size: 1.1rem; color: var(--text-dark); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; display: flex; justify-content: space-between; }
+        /* Cards */
+        .scenario-card { background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; display: flex; flex-direction: column; gap: 1.2rem; border-top: 4px solid var(--accent); position: relative; }
+        .scenario-card h3 { font-size: 1.1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .btn-remove-s3 { background: none; border: none; color: #dc3545; font-size: 0.8rem; font-weight: bold; cursor: pointer; text-decoration: underline; }
         
         .conditional-fields { display: flex; flex-direction: column; gap: 1.2rem; }
-
-        /* Painel de Resultados Interno */
         .card-results { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem; margin-top: auto; }
         .res-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.35rem 0; border-bottom: 1px dashed var(--border); }
         .res-row:last-child { border-bottom: none; font-weight: bold; font-size: 1rem; color: #000; padding-top: 0.5rem; }
 
-        /* Resumo Geométrico no Tab 1 */
+        /* Botão Adicionar C3 */
+        #btn-add-s3 { border: 2px dashed var(--border-dark); background: transparent; border-radius: var(--radius); color: var(--text-muted); font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; min-height: 100%; padding: 2rem; transition: all 0.2s; }
+        #btn-add-s3:hover { background: var(--accent-light); border-color: var(--accent); color: var(--text-dark); }
+
+        /* Geo Summary */
         .geo-summary { margin-top: 2rem; background: var(--accent-light); padding: 1.5rem; border-radius: var(--radius); display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
         .geo-item span { display: block; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; }
         .geo-item strong { font-size: 1.3rem; color: var(--text-dark); }
@@ -75,35 +78,36 @@
         .sticky-summary-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; border-top: 1px solid var(--border-dark); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); z-index: 100; }
         .sticky-columns { display: flex; gap: 2rem; flex-grow: 1; }
         .sticky-col { display: flex; flex-direction: column; border-left: 2px solid var(--border); padding-left: 1rem; }
+        .sticky-col:first-child { border-left: none; padding-left: 0; }
         .sticky-col span { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
         .sticky-col strong { font-size: 1.1rem; color: var(--text-dark); }
-        .btn-trigger { background: var(--text-dark); color: #fff; border: none; padding: 0.8rem 1.8rem; border-radius: var(--radius); font-weight: 600; cursor: pointer; transition: background 0.2s; white-space: nowrap; margin-left: 1rem; }
+        .btn-trigger { background: var(--text-dark); color: #fff; border: none; padding: 0.8rem 1.8rem; border-radius: var(--radius); font-weight: 600; cursor: pointer; margin-left: 1rem; }
         .btn-trigger:hover { background: #000; }
 
         @media (max-width: 768px) {
             .sticky-summary-bar { flex-direction: column; gap: 1rem; padding: 1rem; }
-            .sticky-columns { width: 100%; justify-content: space-between; gap: 0.5rem; }
+            .sticky-columns { width: 100%; justify-content: space-around; gap: 0.5rem; }
             .sticky-col { border-left: none; padding-left: 0; align-items: center; }
             .btn-trigger { width: 100%; margin-left: 0; }
         }
 
         /* Modal */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); display: none; align-items: center; justify-content: center; z-index: 200; }
-        .modal { background: var(--surface); padding: 2rem; border-radius: var(--radius); width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 1.2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .modal h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-        .modal-actions { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 0.5rem; }
+        .modal { background: var(--surface); padding: 2rem; border-radius: var(--radius); width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 1.2rem; }
+        .modal-actions { display: flex; justify-content: flex-end; gap: 1rem; }
         .btn-cancel { background: none; border: 1px solid var(--border-dark); padding: 0.6rem 1.2rem; cursor: pointer; border-radius: var(--radius); font-weight: 600; }
 
-        /* Estrutura Oculta Exclusiva para Impressão do PDF (A4 Paisagem) */
-        #pdf-render-area { display: none; padding: 30px; background: #fff; color: #000; }
-        .pdf-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .pdf-meta { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
-        .pdf-meta td { padding: 6px; border: 1px solid #dee2e6; font-size: 12px; }
+        /* Estrutura PDF */
+        #pdf-render-area { display: none; padding: 10px 20px; background: #fff; color: #000; }
+        .pdf-header { border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .pdf-meta { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
+        .pdf-meta td { padding: 5px; border: 1px solid #dee2e6; font-size: 11px; }
         .pdf-meta td.label { font-weight: bold; background: #f8f9fa; width: 15%; }
-        .pdf-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .pdf-table th, .pdf-table td { border: 1px solid #6c757d; padding: 8px; text-align: left; font-size: 12px; vertical-align: top; }
+        .pdf-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .pdf-table th, .pdf-table td { border: 1px solid #6c757d; padding: 6px; text-align: left; font-size: 11px; vertical-align: top; }
         .pdf-table th { background: #e9ecef; font-weight: bold; }
-        .pdf-table tr.highlight { background: #f1f3f5; font-weight: bold; }
+        .pdf-table tr.highlight td { background: #f1f3f5; font-weight: bold; font-size: 13px; }
+        .pdf-footer-note { margin-top: 15px; font-size: 9px; color: #888; text-align: center; border-top: 1px dashed #ccc; padding-top: 8px; }
     </style>
 </head>
 <body>
@@ -131,26 +135,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="form-header">
-                    <label>Pé-Direito Parede (m)</label>
-                    <div class="tooltip-wrapper">
-                        <div class="icon-help" tabindex="0">?</div>
-                        <span class="tooltip-text">Altura livre do chão ao teto. Essencial se algum cenário simular revestimento em paredes.</span>
-                    </div>
-                </div>
+                <div class="form-header"><label>Pé-Direito Parede (m)</label></div>
                 <div class="sync-container">
                     <input type="number" id="geo-height-num" value="2.80" step="0.05" min="0.1">
                     <input type="range" id="geo-height-range" value="2.80" step="0.05" min="0.1" max="5">
                 </div>
             </div>
             <div class="form-group">
-                <div class="form-header">
-                    <label>Descontos de Vãos (m²)</label>
-                    <div class="tooltip-wrapper">
-                        <div class="icon-help" tabindex="0">?</div>
-                        <span class="tooltip-text">Soma das áreas de portas e janelas que não receberão revestimento (vãos abertos).</span>
-                    </div>
-                </div>
+                <div class="form-header"><label>Descontos de Vãos (m²)</label></div>
                 <div class="sync-container">
                     <input type="number" id="geo-discount-num" value="1.60" step="0.1" min="0">
                     <input type="range" id="geo-discount-range" value="1.60" step="0.1" min="0" max="20">
@@ -161,185 +153,109 @@
         <div class="geo-summary">
             <div class="geo-item"><span>Área de Piso</span><strong id="out-geo-floor">0.00 m²</strong></div>
             <div class="geo-item"><span>Perímetro Linear</span><strong id="out-geo-perimeter">0.00 m</strong></div>
-            <div class="geo-item"><span>Área Bruta de Parede</span><strong id="out-geo-wall-raw">0.00 m²</strong></div>
-            <div class="geo-item"><span>Área Líquida Parede (c/ desconto)</span><strong id="out-geo-wall-net">0.00 m²</strong></div>
+            <div class="geo-item"><span>Área Bruta Parede</span><strong id="out-geo-wall-raw">0.00 m²</strong></div>
+            <div class="geo-item"><span>Área Líq. Parede</span><strong id="out-geo-wall-net">0.00 m²</strong></div>
         </div>
     </div>
 
     <div id="tab-scenarios" class="tab-content">
-        <div class="scenarios-grid">
+        <div class="scenarios-grid" id="main-grid">
             
             <div class="scenario-card" id="card-s1">
                 <h3><span>Cenário 1</span></h3>
                 <div class="form-group">
-                    <label>Nome do Revestimento</label>
+                    <label>Revestimento</label>
                     <input type="text" id="s1-name" value="Porcelanato Amadeirado">
                 </div>
                 <div class="form-group">
-                    <label>Superfície Alvo</label>
-                    <select id="s1-target" onchange="calculateAll()">
-                        <option value="piso" selected>Aplicar no Piso</option>
-                        <option value="parede">Aplicar na Parede</option>
-                    </select>
+                    <label>Superfície</label>
+                    <select id="s1-target" onchange="calculateAll()"><option value="piso" selected>Piso</option><option value="parede">Parede</option></select>
                 </div>
                 <div class="form-group">
-                    <label>Unidade de Comercialização</label>
-                    <select id="s1-unit-type" onchange="toggleUnitFields(1)">
-                        <option value="m2" selected>Por Metro Quadrado (Caixa)</option>
-                        <option value="piece">Por Peça (Unidade)</option>
-                    </select>
+                    <label>Venda por</label>
+                    <select id="s1-unit-type" onchange="toggleUnitFields(1)"><option value="m2" selected>Caixa (m²)</option><option value="piece">Unidade (Peça)</option></select>
                 </div>
                 <div class="form-group">
                     <label id="s1-label-price">Preço (R$/m²)</label>
                     <input type="number" id="s1-price" value="85.00" step="1">
                 </div>
-                
                 <div class="conditional-fields">
-                    <div id="s1-box-view" class="form-group">
-                        <label>Metragem por Caixa (m²)</label>
-                        <input type="number" id="s1-box-m2" value="2.40" step="0.01">
-                    </div>
-                    <div id="s1-piece-view" class="form-group" style="display:none;">
-                        <label>Dimensões da Peça (cm)</label>
-                        <div style="display:flex; gap:0.5rem;">
-                            <input type="number" id="s1-w-cm" value="60" placeholder="L">
-                            <input type="number" id="s1-h-cm" value="120" placeholder="C">
-                        </div>
-                    </div>
+                    <div id="s1-box-view" class="form-group"><label>Rendimento da Caixa (m²)</label><input type="number" id="s1-box-m2" value="2.40" step="0.01"></div>
+                    <div id="s1-piece-view" class="form-group" style="display:none;"><label>Dimensões (L x C cm)</label><div style="display:flex; gap:0.5rem;"><input type="number" id="s1-w-cm" value="60"><input type="number" id="s1-h-cm" value="120"></div></div>
                 </div>
-
                 <div class="form-group">
-                    <div class="form-header">
-                        <label>Paginação / Perda</label>
-                        <div class="tooltip-wrapper">
-                            <div class="icon-help" tabindex="0">?</div>
-                            <span class="tooltip-text">Alinhado perde ~10%. Transpassado perde ~15%. Diagonal/Espinha de peixe perde ~20% devido aos recortes de canto.</span>
-                        </div>
-                    </div>
-                    <select id="s1-loss" onchange="calculateAll()">
-                        <option value="10" selected>Alinhado (10% perda)</option>
-                        <option value="15">Transpassado (15% perda)</option>
-                        <option value="20">Espinha / Diagonal (20% perda)</option>
-                    </select>
+                    <label>Paginação / Perda</label>
+                    <select id="s1-loss" onchange="calculateAll()"><option value="10" selected>Alinhado (10%)</option><option value="15">Transpassado (15%)</option><option value="20">Espinha/Diagonal (20%)</option></select>
                 </div>
-
                 <div class="card-results">
-                    <div class="res-row"><span>Área Destino:</span><span id="s1-res-area">0.00 m²</span></div>
-                    <div class="res-row"><span>Área total c/ perda:</span><span id="s1-res-area-loss">0.00 m²</span></div>
-                    <div class="res-row"><span id="s1-res-label-qty">Total de Caixas:</span><span id="s1-res-qty">0</span></div>
-                    <div class="res-row"><span>Custo Estimado:</span><span id="s1-res-cost">R$ 0,00</span></div>
+                    <div class="res-row"><span>Qtd para Compra:</span><strong id="s1-res-qty">0</strong></div>
+                    <div class="res-row"><span>Custo Total:</span><strong id="s1-res-cost">R$ 0,00</strong></div>
                 </div>
             </div>
 
             <div class="scenario-card" id="card-s2">
                 <h3><span>Cenário 2</span></h3>
                 <div class="form-group">
-                    <label>Nome do Revestimento</label>
+                    <label>Revestimento</label>
                     <input type="text" id="s2-name" value="Ladrilho Hidráulico Retrô">
                 </div>
                 <div class="form-group">
-                    <label>Superfície Alvo</label>
-                    <select id="s2-target" onchange="calculateAll()">
-                        <option value="piso">Aplicar no Piso</option>
-                        <option value="parede" selected>Aplicar na Parede</option>
-                    </select>
+                    <label>Superfície</label>
+                    <select id="s2-target" onchange="calculateAll()"><option value="piso">Piso</option><option value="parede" selected>Parede</option></select>
                 </div>
                 <div class="form-group">
-                    <label>Unidade de Comercialização</label>
-                    <select id="s2-unit-type" onchange="toggleUnitFields(2)">
-                        <option value="m2">Por Metro Quadrado (Caixa)</option>
-                        <option value="piece" selected>Por Peça (Unidade)</option>
-                    </select>
+                    <label>Venda por</label>
+                    <select id="s2-unit-type" onchange="toggleUnitFields(2)"><option value="m2">Caixa (m²)</option><option value="piece" selected>Unidade (Peça)</option></select>
                 </div>
                 <div class="form-group">
                     <label id="s2-label-price">Preço (R$/Peça)</label>
                     <input type="number" id="s2-price" value="14.50" step="0.5">
                 </div>
-                
                 <div class="conditional-fields">
-                    <div id="s2-box-view" class="form-group" style="display:none;">
-                        <label>Metragem por Caixa (m²)</label>
-                        <input type="number" id="s2-box-m2" value="1.50" step="0.01">
-                    </div>
-                    <div id="s2-piece-view" class="form-group">
-                        <label>Dimensões da Peça (cm)</label>
-                        <div style="display:flex; gap:0.5rem;">
-                            <input type="number" id="s2-w-cm" value="20" placeholder="L">
-                            <input type="number" id="s2-h-cm" value="20" placeholder="C">
-                        </div>
-                    </div>
+                    <div id="s2-box-view" class="form-group" style="display:none;"><label>Rendimento da Caixa (m²)</label><input type="number" id="s2-box-m2" value="1.50" step="0.01"></div>
+                    <div id="s2-piece-view" class="form-group"><label>Dimensões (L x C cm)</label><div style="display:flex; gap:0.5rem;"><input type="number" id="s2-w-cm" value="20"><input type="number" id="s2-h-cm" value="20"></div></div>
                 </div>
-
                 <div class="form-group">
-                    <div class="form-header"><label>Paginação / Perda</label></div>
-                    <select id="s2-loss" onchange="calculateAll()">
-                        <option value="10">Alinhado (10% perda)</option>
-                        <option value="15" selected>Transpassado (15% perda)</option>
-                        <option value="20">Espinha / Diagonal (20% perda)</option>
-                    </select>
+                    <label>Paginação / Perda</label>
+                    <select id="s2-loss" onchange="calculateAll()"><option value="10">Alinhado (10%)</option><option value="15" selected>Transpassado (15%)</option><option value="20">Espinha/Diagonal (20%)</option></select>
                 </div>
-
                 <div class="card-results">
-                    <div class="res-row"><span>Área Destino:</span><span id="s2-res-area">0.00 m²</span></div>
-                    <div class="res-row"><span>Área total c/ perda:</span><span id="s2-res-area-loss">0.00 m²</span></div>
-                    <div class="res-row"><span id="s2-res-label-qty">Total de Peças:</span><span id="s2-res-qty">0</span></div>
-                    <div class="res-row"><span>Custo Estimado:</span><span id="s2-res-cost">R$ 0,00</span></div>
+                    <div class="res-row"><span>Qtd para Compra:</span><strong id="s2-res-qty">0</strong></div>
+                    <div class="res-row"><span>Custo Total:</span><strong id="s2-res-cost">R$ 0,00</strong></div>
                 </div>
             </div>
 
-            <div class="scenario-card" id="card-s3">
-                <h3><span>Cenário 3</span></h3>
+            <button id="btn-add-s3" onclick="toggleS3(true)">+ Adicionar Cenário 3</button>
+
+            <div class="scenario-card" id="card-s3" style="display: none;">
+                <h3><span>Cenário 3</span> <button class="btn-remove-s3" onclick="toggleS3(false)">Remover</button></h3>
                 <div class="form-group">
-                    <label>Nome do Revestimento</label>
+                    <label>Revestimento</label>
                     <input type="text" id="s3-name" value="Pedra Vulcânica Nobre">
                 </div>
                 <div class="form-group">
-                    <label>Superfície Alvo</label>
-                    <select id="s3-target" onchange="calculateAll()">
-                        <option value="piso" selected>Aplicar no Piso</option>
-                        <option value="parede">Aplicar na Parede</option>
-                    </select>
+                    <label>Superfície</label>
+                    <select id="s3-target" onchange="calculateAll()"><option value="piso" selected>Piso</option><option value="parede">Parede</option></select>
                 </div>
                 <div class="form-group">
-                    <label>Unidade de Comercialização</label>
-                    <select id="s3-unit-type" onchange="toggleUnitFields(3)">
-                        <option value="m2" selected>Por Metro Quadrado (Caixa)</option>
-                        <option value="piece">Por Peça (Unidade)</option>
-                    </select>
+                    <label>Venda por</label>
+                    <select id="s3-unit-type" onchange="toggleUnitFields(3)"><option value="m2" selected>Caixa (m²)</option><option value="piece">Unidade (Peça)</option></select>
                 </div>
                 <div class="form-group">
                     <label id="s3-label-price">Preço (R$/m²)</label>
                     <input type="number" id="s3-price" value="210.00" step="5">
                 </div>
-                
                 <div class="conditional-fields">
-                    <div id="s3-box-view" class="form-group">
-                        <label>Metragem por Caixa (m²)</label>
-                        <input type="number" id="s3-box-m2" value="1.20" step="0.01">
-                    </div>
-                    <div id="s3-piece-view" class="form-group" style="display:none;">
-                        <label>Dimensões da Peça (cm)</label>
-                        <div style="display:flex; gap:0.5rem;">
-                            <input type="number" id="s3-w-cm" value="30" placeholder="L">
-                            <input type="number" id="s3-h-cm" value="60" placeholder="C">
-                        </div>
-                    </div>
+                    <div id="s3-box-view" class="form-group"><label>Rendimento da Caixa (m²)</label><input type="number" id="s3-box-m2" value="1.20" step="0.01"></div>
+                    <div id="s3-piece-view" class="form-group" style="display:none;"><label>Dimensões (L x C cm)</label><div style="display:flex; gap:0.5rem;"><input type="number" id="s3-w-cm" value="30"><input type="number" id="s3-h-cm" value="60"></div></div>
                 </div>
-
                 <div class="form-group">
-                    <div class="form-header"><label>Paginação / Perda</label></div>
-                    <select id="s3-loss" onchange="calculateAll()">
-                        <option value="10">Alinhado (10% perda)</option>
-                        <option value="15">Transpassado (15% perda)</option>
-                        <option value="20" selected>Espinha / Diagonal (20% perda)</option>
-                    </select>
+                    <label>Paginação / Perda</label>
+                    <select id="s3-loss" onchange="calculateAll()"><option value="10">Alinhado (10%)</option><option value="15">Transpassado (15%)</option><option value="20" selected>Espinha/Diagonal (20%)</option></select>
                 </div>
-
                 <div class="card-results">
-                    <div class="res-row"><span>Área Destino:</span><span id="s3-res-area">0.00 m²</span></div>
-                    <div class="res-row"><span>Área total c/ perda:</span><span id="s3-res-area-loss">0.00 m²</span></div>
-                    <div class="res-row"><span id="s3-res-label-qty">Total de Caixas:</span><span id="s3-res-qty">0</span></div>
-                    <div class="res-row"><span>Custo Estimado:</span><span id="s3-res-cost">R$ 0,00</span></div>
+                    <div class="res-row"><span>Qtd para Compra:</span><strong id="s3-res-qty">0</strong></div>
+                    <div class="res-row"><span>Custo Total:</span><strong id="s3-res-cost">R$ 0,00</strong></div>
                 </div>
             </div>
 
@@ -349,18 +265,9 @@
 
 <div class="sticky-summary-bar">
     <div class="sticky-columns">
-        <div class="sticky-col">
-            <span>CENÁRIO 1</span>
-            <strong id="sticky-s1-total">R$ 0,00</strong>
-        </div>
-        <div class="sticky-col">
-            <span>CENÁRIO 2</span>
-            <strong id="sticky-s2-total">R$ 0,00</strong>
-        </div>
-        <div class="sticky-col">
-            <span>CENÁRIO 3</span>
-            <strong id="sticky-s3-total">R$ 0,00</strong>
-        </div>
+        <div class="sticky-col"><span>CENÁRIO 1</span><strong id="sticky-s1-total">R$ 0,00</strong></div>
+        <div class="sticky-col"><span>CENÁRIO 2</span><strong id="sticky-s2-total">R$ 0,00</strong></div>
+        <div class="sticky-col" id="sticky-s3-col" style="display:none;"><span>CENÁRIO 3</span><strong id="sticky-s3-total">R$ 0,00</strong></div>
     </div>
     <button class="btn-trigger" onclick="openPdfModal()">Exportar Relatório</button>
 </div>
@@ -368,18 +275,9 @@
 <div class="modal-overlay" id="modal-pdf">
     <div class="modal">
         <h3>Configuração do Relatório</h3>
-        <div class="form-group">
-            <label>Nome do Cliente</label>
-            <input type="text" id="pdf-client-input" placeholder="Ex: Patrícia Medeiros">
-        </div>
-        <div class="form-group">
-            <label>Ambiente Analisado</label>
-            <input type="text" id="pdf-env-input" placeholder="Ex: Cozinha Integrada + Área Gourmet">
-        </div>
-        <div class="form-group">
-            <label>Observações / Considerações</label>
-            <input type="text" id="pdf-notes-input" placeholder="Ex: Opção 3 inclui paginação espinha de peixe na parede focal.">
-        </div>
+        <div class="form-group"><label>Nome do Cliente</label><input type="text" id="pdf-client-input"></div>
+        <div class="form-group"><label>Ambiente Analisado</label><input type="text" id="pdf-env-input"></div>
+        <div class="form-group"><label>Observações</label><input type="text" id="pdf-notes-input"></div>
         <div class="modal-actions">
             <button class="btn-cancel" onclick="closePdfModal()">Voltar</button>
             <button class="btn-trigger" onclick="buildAndDownloadPdf()">Emitir PDF</button>
@@ -390,318 +288,187 @@
 <div id="pdf-render-area">
     <div class="pdf-header">
         <div>
-            <h1 style="font-size: 22px; color:#1a1a1a;">Relatório Comparativo de Revestimentos</h1>
-            <p style="font-size: 11px; color:#666; margin-top:3px;">Simulação orçamentária multicontextual de superfícies arquitetônicas</p>
+            <h1 style="font-size: 18px; color:#1a1a1a;">Relatório Comparativo de Revestimentos</h1>
+            <p style="font-size: 10px; color:#666; margin-top:2px;">Simulação orçamentária multicontextual</p>
         </div>
-        <div style="text-align: right; font-size: 11px; color:#444;">
-            <p><strong>Emissão:</strong> <span id="pdf-date">--/--/----</span></p>
-        </div>
+        <div style="text-align: right; font-size: 10px; color:#444;"><p><strong>Emissão:</strong> <span id="pdf-date">--/--/----</span></p></div>
     </div>
 
     <table class="pdf-meta">
-        <tr>
-            <td class="label">Cliente:</td>
-            <td id="pdf-meta-client">--</td>
-            <td class="label">Ambiente:</td>
-            <td id="pdf-meta-env">--</td>
-        </tr>
-        <tr>
-            <td class="label">Observações:</td>
-            <td id="pdf-meta-notes" colspan="3">--</td>
-        </tr>
+        <tr><td class="label">Cliente:</td><td id="pdf-meta-client">--</td><td class="label">Ambiente:</td><td id="pdf-meta-env">--</td></tr>
+        <tr><td class="label">Observações:</td><td id="pdf-meta-notes" colspan="3">--</td></tr>
     </table>
 
-    <h3 style="font-size: 13px; text-transform: uppercase; margin-bottom: 8px; color:#333;">1. Levantamento Geométrico Base</h3>
-    <table class="pdf-meta" style="margin-bottom: 25px;">
-        <tr>
-            <td class="label">Dimensões Piso:</td>
-            <td id="pdf-geo-dim">0.00 x 0.00 m</td>
-            <td class="label">Área de Piso:</td>
-            <td id="pdf-geo-floor">0.00 m²</td>
-            <td class="label">Pé-Direito:</td>
-            <td id="pdf-geo-height">0.00 m</td>
-        </tr>
-        <tr>
-            <td class="label">Perímetro Total:</td>
-            <td id="pdf-geo-perim">0.00 m</td>
-            <td class="label">Descontos (Vãos):</td>
-            <td id="pdf-geo-disc">0.00 m²</td>
-            <td class="label">Área Líq. Parede:</td>
-            <td id="pdf-geo-wall">0.00 m²</td>
-        </tr>
+    <h3 style="font-size: 11px; margin-bottom: 5px;">1. LEVANTAMENTO GEOMÉTRICO</h3>
+    <table class="pdf-meta" style="margin-bottom: 15px;">
+        <tr><td class="label">Dimensões:</td><td id="pdf-geo-dim">0x0m</td><td class="label">Área Piso:</td><td id="pdf-geo-floor">0m²</td><td class="label">Pé-Direito:</td><td id="pdf-geo-height">0m</td></tr>
+        <tr><td class="label">Perímetro:</td><td id="pdf-geo-perim">0m</td><td class="label">Descontos:</td><td id="pdf-geo-disc">0m²</td><td class="label">Área Parede:</td><td id="pdf-geo-wall">0m²</td></tr>
     </table>
 
-    <h3 style="font-size: 13px; text-transform: uppercase; margin-bottom: 8px; color:#333;">2. Matriz Comparativa de Cenários</h3>
+    <h3 style="font-size: 11px; margin-bottom: 5px;">2. MATRIZ DE CENÁRIOS</h3>
     <table class="pdf-table">
         <thead>
             <tr>
-                <th style="width: 22%;">Critério Analisado</th>
-                <th style="width: 26%;">Cenário 1</th>
-                <th style="width: 26%;">Cenário 2</th>
-                <th style="width: 26%;">Cenário 3</th>
+                <th style="width: 25%;">Critério Analisado</th>
+                <th id="pdf-th-s1">Cenário 1</th>
+                <th id="pdf-th-s2">Cenário 2</th>
+                <th id="pdf-th-s3" class="pdf-col-s3" style="display:none;">Cenário 3</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td style="font-weight: bold; background:#f8f9fa;">Revestimento Especificado</td>
-                <td id="pdf-s1-name">--</td>
-                <td id="pdf-s2-name">--</td>
-                <td id="pdf-s3-name">--</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; background:#f8f9fa;">Superfície Alvo</td>
-                <td id="pdf-s1-target">--</td>
-                <td id="pdf-s2-target">--</td>
-                <td id="pdf-s3-target">--</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; background:#f8f9fa;">Unidade Comercial</td>
-                <td id="pdf-s1-utype">--</td>
-                <td id="pdf-s2-utype">--</td>
-                <td id="pdf-s3-utype">--</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; background:#f8f9fa;">Especificação de Embalagem/Peça</td>
-                <td id="pdf-s1-spec">--</td>
-                <td id="pdf-s2-spec">--</td>
-                <td id="pdf-s3-spec">--</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; background:#f8f9fa;">Preço de Referência</td>
-                <td id="pdf-s1-uprice">--</td>
-                <td id="pdf-s2-uprice">--</td>
-                <td id="pdf-s3-uprice">--</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; background:#f8f9fa;">Margem de Perda (Paginação)</td>
-                <td id="pdf-s1-loss">--</td>
-                <td id="pdf-s2-loss">--</td>
-                <td id="pdf-s3-loss">--</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; background:#f8f9fa;">Área Líquida Real</td>
-                <td id="pdf-s1-netarea">--</td>
-                <td id="pdf-s2-netarea">--</td>
-                <td id="pdf-s3-netarea">--</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; background:#f8f9fa;">Metragem Bruta Necessária</td>
-                <td id="pdf-s1-grossarea">--</td>
-                <td id="pdf-s2-grossarea">--</td>
-                <td id="pdf-s3-grossarea">--</td>
-            </tr>
-            <tr>
-                <td style="font-weight: bold; background:#f8f9fa;">Volume de Compra Solicitado</td>
-                <td id="pdf-s1-vol">--</td>
-                <td id="pdf-s2-vol">--</td>
-                <td id="pdf-s3-vol">--</td>
-            </tr>
-            <tr class="highlight">
-                <td style="background: #e2e3e5; color: #000;">INVESTIMENTO TOTAL ESTIMADO</td>
-                <td id="pdf-s1-totalcost" style="font-size:14px; color:#111;">--</td>
-                <td id="pdf-s2-totalcost" style="font-size:14px; color:#111;">--</td>
-                <td id="pdf-s3-totalcost" style="font-size:14px; color:#111;">--</td>
-            </tr>
+            <tr><td style="font-weight: bold;">Revestimento</td><td id="pdf-s1-name">--</td><td id="pdf-s2-name">--</td><td id="pdf-s3-name" class="pdf-col-s3" style="display:none;">--</td></tr>
+            <tr><td style="font-weight: bold;">Superfície</td><td id="pdf-s1-target">--</td><td id="pdf-s2-target">--</td><td id="pdf-s3-target" class="pdf-col-s3" style="display:none;">--</td></tr>
+            <tr><td style="font-weight: bold;">Unidade</td><td id="pdf-s1-utype">--</td><td id="pdf-s2-utype">--</td><td id="pdf-s3-utype" class="pdf-col-s3" style="display:none;">--</td></tr>
+            <tr><td style="font-weight: bold;">Especificação</td><td id="pdf-s1-spec">--</td><td id="pdf-s2-spec">--</td><td id="pdf-s3-spec" class="pdf-col-s3" style="display:none;">--</td></tr>
+            <tr><td style="font-weight: bold;">Preço</td><td id="pdf-s1-uprice">--</td><td id="pdf-s2-uprice">--</td><td id="pdf-s3-uprice" class="pdf-col-s3" style="display:none;">--</td></tr>
+            <tr><td style="font-weight: bold;">Perda Paginação</td><td id="pdf-s1-loss">--</td><td id="pdf-s2-loss">--</td><td id="pdf-s3-loss" class="pdf-col-s3" style="display:none;">--</td></tr>
+            <tr><td style="font-weight: bold;">Volume Compra</td><td id="pdf-s1-vol">--</td><td id="pdf-s2-vol">--</td><td id="pdf-s3-vol" class="pdf-col-s3" style="display:none;">--</td></tr>
+            <tr class="highlight"><td style="background:#e2e3e5;">TOTAL ESTIMADO</td><td id="pdf-s1-totalcost">--</td><td id="pdf-s2-totalcost">--</td><td id="pdf-s3-totalcost" class="pdf-col-s3" style="display:none;">--</td></tr>
         </tbody>
     </table>
-    
-    <div style="margin-top: 30px; font-size: 10px; color: #888; text-align: center; border-top: 1px dashed #ccc; padding-top: 10px;">
-        * O presente documento constitui uma estimativa de quantitativos com base em entradas paramétricas estruturadas. Recomenda-se a validação em obra antes do pedido fabril.
-    </div>
+    <div class="pdf-footer-note">* Estimativa parametrizada. Validar quantitativos reais em obra.</div>
 </div>
 
 <script>
-    // Gerenciamento de Abas
-    function switchTab(event, tabId) {
-        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    let isS3Active = false;
+    let calcState = { geo: {}, s1: {}, s2: {}, s3: {} };
+
+    function switchTab(e, tabId) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
+        e.currentTarget.classList.add('active');
     }
 
-    // Configuração e Vinculação dos Sliders Sincronizados
-    const syncedInputs = [
-        ['geo-width-num', 'geo-width-range'],
-        ['geo-length-num', 'geo-length-range'],
-        ['geo-height-num', 'geo-height-range'],
-        ['geo-discount-num', 'geo-discount-range']
-    ];
-
-    syncedInputs.forEach(([numId, rangeId]) => {
-        const numElem = document.getElementById(numId);
-        const rangeElem = document.getElementById(rangeId);
-        
-        numElem.addEventListener('input', () => { rangeElem.value = numElem.value; calculateAll(); });
-        rangeElem.addEventListener('input', () => { numElem.value = rangeElem.value; calculateAll(); });
+    const syncedInputs = [['geo-width-num','geo-width-range'],['geo-length-num','geo-length-range'],['geo-height-num','geo-height-range'],['geo-discount-num','geo-discount-range']];
+    syncedInputs.forEach(([n, r]) => {
+        document.getElementById(n).addEventListener('input', () => { document.getElementById(r).value = document.getElementById(n).value; calculateAll(); });
+        document.getElementById(r).addEventListener('input', () => { document.getElementById(n).value = document.getElementById(r).value; calculateAll(); });
     });
 
-    // Inputs adicionais dos cenários que devem disparar recálculo instantâneo
-    const scenarioInputs = [
-        's1-name', 's1-price', 's1-box-m2', 's1-w-cm', 's1-h-cm', 's1-loss',
-        's2-name', 's2-price', 's2-box-m2', 's2-w-cm', 's2-h-cm', 's2-loss',
-        's3-name', 's3-price', 's3-box-m2', 's3-w-cm', 's3-h-cm', 's3-loss'
-    ];
-    scenarioInputs.forEach(id => document.getElementById(id).addEventListener('input', calculateAll));
+    ['s1','s2','s3'].forEach(s => {
+        ['name','price','box-m2','w-cm','h-cm','loss'].forEach(f => document.getElementById(`${s}-${f}`).addEventListener('input', calculateAll));
+    });
 
-    // Formatação de Moeda Nacional
-    const toBRL = (val) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
+    const toBRL = v => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v);
 
-    // Alternar campos conforme tipo de venda (m² vs Peça)
-    function toggleUnitFields(index) {
-        const type = document.getElementById(`s${index}-unit-type`).value;
-        const boxView = document.getElementById(`s${index}-box-view`);
-        const pieceView = document.getElementById(`s${index}-piece-view`);
-        const labelPrice = document.getElementById(`s${index}-label-price`);
+    function toggleUnitFields(idx) {
+        const t = document.getElementById(`s${idx}-unit-type`).value;
+        document.getElementById(`s${idx}-box-view`).style.display = t === 'm2' ? 'flex' : 'none';
+        document.getElementById(`s${idx}-piece-view`).style.display = t === 'm2' ? 'none' : 'flex';
+        document.getElementById(`s${idx}-label-price`).innerText = t === 'm2' ? 'Preço (R$/m²)' : 'Preço (R$/Peça)';
+        calculateAll();
+    }
 
-        if (type === 'm2') {
-            boxView.style.display = 'flex';
-            pieceView.style.display = 'none';
-            labelPrice.innerText = 'Preço (R$/m²)';
+    function toggleS3(state) {
+        isS3Active = state;
+        const grid = document.getElementById('main-grid');
+        
+        if (state) {
+            // Pre-fill S3 com base no S1
+            document.getElementById('s3-target').value = document.getElementById('s1-target').value;
+            document.getElementById('s3-unit-type').value = document.getElementById('s1-unit-type').value;
+            document.getElementById('s3-loss').value = document.getElementById('s1-loss').value;
+            toggleUnitFields(3);
+            
+            grid.classList.add('has-3');
+            document.getElementById('btn-add-s3').style.display = 'none';
+            document.getElementById('card-s3').style.display = 'flex';
+            document.getElementById('sticky-s3-col').style.display = 'flex';
+            
+            document.querySelectorAll('.pdf-col-s3').forEach(el => el.style.display = 'table-cell');
         } else {
-            boxView.style.display = 'none';
-            pieceView.style.display = 'flex';
-            labelPrice.innerText = 'Preço (R$/Peça)';
+            grid.classList.remove('has-3');
+            document.getElementById('btn-add-s3').style.display = 'flex';
+            document.getElementById('card-s3').style.display = 'none';
+            document.getElementById('sticky-s3-col').style.display = 'none';
+            
+            document.querySelectorAll('.pdf-col-s3').forEach(el => el.style.display = 'none');
         }
         calculateAll();
     }
 
-    // Estrutura global de armazenamento de estado
-    let calcState = { geo: {}, s1: {}, s2: {}, s3: {} };
-
     function calculateAll() {
-        // Coleta de Dados Geométricos
-        const w = parseFloat(document.getElementById('geo-width-num').value) || 0;
-        const l = parseFloat(document.getElementById('geo-length-num').value) || 0;
-        const h = parseFloat(document.getElementById('geo-height-num').value) || 0;
-        const disc = parseFloat(document.getElementById('geo-discount-num').value) || 0;
+        const w = parseFloat(document.getElementById('geo-width-num').value)||0, l = parseFloat(document.getElementById('geo-length-num').value)||0;
+        const h = parseFloat(document.getElementById('geo-height-num').value)||0, d = parseFloat(document.getElementById('geo-discount-num').value)||0;
+        
+        calcState.geo = { w, l, h, d, floor: w*l, perim: 2*(w+l), wall: Math.max(0, (2*(w+l)*h)-d) };
+        
+        document.getElementById('out-geo-floor').innerText = `${calcState.geo.floor.toFixed(2)} m²`;
+        document.getElementById('out-geo-perimeter').innerText = `${calcState.geo.perim.toFixed(2)} m`;
+        document.getElementById('out-geo-wall-raw').innerText = `${(calcState.geo.perim*h).toFixed(2)} m²`;
+        document.getElementById('out-geo-wall-net').innerText = `${calcState.geo.wall.toFixed(2)} m²`;
 
-        const floorArea = w * l;
-        const perimeter = 2 * (w + l);
-        const wallAreaRaw = perimeter * h;
-        const wallAreaNet = Math.max(0, wallAreaRaw - disc);
+        [1, 2, 3].forEach(i => {
+            if (i === 3 && !isS3Active) return;
 
-        calcState.geo = { w, l, h, disc, floorArea, perimeter, wallAreaRaw, wallAreaNet };
+            const target = document.getElementById(`s${i}-target`).value, utype = document.getElementById(`s${i}-unit-type`).value;
+            const price = parseFloat(document.getElementById(`s${i}-price`).value)||0, loss = parseFloat(document.getElementById(`s${i}-loss`).value)||0;
+            const area = target === 'piso' ? calcState.geo.floor : calcState.geo.wall;
+            const areaLoss = area * (1 + (loss/100));
 
-        // Renderização dos dados geométricos na tela
-        document.getElementById('out-geo-floor').innerText = `${floorArea.toFixed(2)} m²`;
-        document.getElementById('out-geo-perimeter').innerText = `${perimeter.toFixed(2)} m`;
-        document.getElementById('out-geo-wall-raw').innerText = `${wallAreaRaw.toFixed(2)} m²`;
-        document.getElementById('out-geo-wall-net').innerText = `${wallAreaNet.toFixed(2)} m²`;
-
-        // Processar os 3 cenários de forma cíclica
-        for(let i = 1; i <= 3; i++) {
-            const name = document.getElementById(`s${i}-name`).value || `Opção ${i}`;
-            const target = document.getElementById(`s${i}-target`).value;
-            const unitType = document.getElementById(`s${i}-unit-type`).value;
-            const price = parseFloat(document.getElementById(`s${i}-price`).value) || 0;
-            const lossPercent = parseFloat(document.getElementById(`s${i}-loss`).value) || 0;
-
-            const targetArea = (target === 'piso') ? floorArea : wallAreaNet;
-            const lossMultiplier = 1 + (lossPercent / 100);
-            const areaWithLoss = targetArea * lossMultiplier;
-
-            let qtyToBuy = 0;
-            let finalCost = 0;
-            let specText = '';
-
-            if (unitType === 'm2') {
-                const boxCoverage = parseFloat(document.getElementById(`s${i}-box-m2`).value) || 1;
-                qtyToBuy = Math.ceil(areaWithLoss / boxCoverage);
-                finalCost = (qtyToBuy * boxCoverage) * price;
-                specText = `${boxCoverage.toFixed(2)} m² por caixa`;
-                
-                document.getElementById(`s${i}-res-label-qty`).innerText = "Total de Caixas:";
-                document.getElementById(`s${i}-res-qty`).innerText = `${qtyToBuy} cx`;
+            let qty=0, cost=0, spec='';
+            if (utype === 'm2') {
+                const box = parseFloat(document.getElementById(`s${i}-box-m2`).value)||1;
+                qty = Math.ceil(areaLoss/box); cost = (qty*box)*price; spec = `${box.toFixed(2)} m²/cx`;
+                document.getElementById(`s${i}-res-qty`).innerText = `${qty} cx`;
             } else {
-                const pW = (parseFloat(document.getElementById(`s${i}-w-cm`).value) || 0) / 100;
-                const pH = (parseFloat(document.getElementById(`s${i}-h-cm`).value) || 0) / 100;
-                const pieceArea = pW * pH;
-                
-                qtyToBuy = pieceArea > 0 ? Math.ceil(areaWithLoss / pieceArea) : 0;
-                finalCost = qtyToBuy * price;
-                specText = `${(pW*100).toFixed(0)}x${(pH*100).toFixed(0)} cm`;
-
-                document.getElementById(`s${i}-res-label-qty`).innerText = "Total de Peças:";
-                document.getElementById(`s${i}-res-qty`).innerText = `${qtyToBuy} und`;
+                const pW = (parseFloat(document.getElementById(`s${i}-w-cm`).value)||0)/100, pH = (parseFloat(document.getElementById(`s${i}-h-cm`).value)||0)/100;
+                qty = (pW*pH)>0 ? Math.ceil(areaLoss/(pW*pH)) : 0; cost = qty*price; spec = `${(pW*100).toFixed(0)}x${(pH*100).toFixed(0)}cm`;
+                document.getElementById(`s${i}-res-qty`).innerText = `${qty} und`;
             }
+            
+            document.getElementById(`s${i}-res-cost`).innerText = toBRL(cost);
+            document.getElementById(`sticky-s${i}-total`).innerText = toBRL(cost);
 
-            // Atualização dos cards na tela
-            document.getElementById(`s${i}-res-area`).innerText = `${targetArea.toFixed(2)} m²`;
-            document.getElementById(`s${i}-res-area-loss`).innerText = `${areaWithLoss.toFixed(2)} m²`;
-            document.getElementById(`s${i}-res-cost`).innerText = toBRL(finalCost);
-
-            // Armazenamento no estado
-            calcState[`s${i}`] = { name, target, unitType, price, lossPercent, targetArea, areaWithLoss, qtyToBuy, finalCost, specText };
-        }
-
-        // Atualização da barra de fixação (Sticky Footer)
-        document.getElementById('sticky-s1-total').innerText = toBRL(calcState.s1.finalCost);
-        document.getElementById('sticky-s2-total').innerText = toBRL(calcState.s2.finalCost);
-        document.getElementById('sticky-s3-total').innerText = toBRL(calcState.s3.finalCost);
-    }
-
-    // Modal de Controle do PDF
-    function openPdfModal() { document.getElementById('modal-pdf').style.display = 'flex'; }
-    function closePdfModal() { document.getElementById('modal-pdf').style.display = 'none'; }
-
-    // Alimentação da Tabela Oculta e Inicialização do Motor do html2pdf.js
-    function buildAndDownloadPdf() {
-        // Obtenção dos inputs informativos do modal
-        const client = document.getElementById('pdf-client-input').value || 'Não Informado';
-        const envName = document.getElementById('pdf-env-input').value || 'Geral / Não Especificado';
-        const notes = document.getElementById('pdf-notes-input').value || 'Sem observações adicionais.';
-
-        // Vinculação de metadados ao documento de impressão
-        document.getElementById('pdf-meta-client').innerText = client;
-        document.getElementById('pdf-meta-env').innerText = envName;
-        document.getElementById('pdf-meta-notes').innerText = notes;
-        document.getElementById('pdf-date').innerText = new Date().toLocaleDateString('pt-BR');
-
-        // Vinculação de dados da geometria base
-        document.getElementById('pdf-geo-dim').innerText = `${calcState.geo.w.toFixed(2)} x ${calcState.geo.l.toFixed(2)} m`;
-        document.getElementById('pdf-geo-floor').innerText = `${calcState.geo.floorArea.toFixed(2)} m²`;
-        document.getElementById('pdf-geo-height').innerText = `${calcState.geo.h.toFixed(2)} m`;
-        document.getElementById('pdf-geo-perim').innerText = `${calcState.geo.perimeter.toFixed(2)} m`;
-        document.getElementById('pdf-geo-disc').innerText = `${calcState.geo.disc.toFixed(2)} m²`;
-        document.getElementById('pdf-geo-wall').innerText = `${calcState.geo.wallAreaNet.toFixed(2)} m²`;
-
-        // Preenchimento das três colunas comparativas na tabela
-        for (let i = 1; i <= 3; i++) {
-            const s = calcState[`s${i}`];
-            document.getElementById(`pdf-s${i}-name`).innerText = s.name;
-            document.getElementById(`pdf-s${i}-target`).innerText = s.target === 'piso' ? 'Piso' : 'Parede';
-            document.getElementById(`pdf-s${i}-utype`).innerText = s.unitType === 'm2' ? 'Metro Quadrado' : 'Unidade (Peça)';
-            document.getElementById(`pdf-s${i}-spec`).innerText = s.specText;
-            document.getElementById(`pdf-s${i}-uprice`).innerText = s.unitType === 'm2' ? `${toBRL(s.price)} / m²` : `${toBRL(s.price)} / Peça`;
-            document.getElementById(`pdf-s${i}-loss`).innerText = `${s.lossPercent}%`;
-            document.getElementById(`pdf-s${i}-netarea`).innerText = `${s.targetArea.toFixed(2)} m²`;
-            document.getElementById(`pdf-s${i}-grossarea`).innerText = `${s.areaWithLoss.toFixed(2)} m²`;
-            document.getElementById(`pdf-s${i}-vol`).innerText = s.unitType === 'm2' ? `${s.qtyToBuy} Caixa(s)` : `${s.qtyToBuy} Peça(s)`;
-            document.getElementById(`pdf-s${i}-totalcost`).innerText = toBRL(s.finalCost);
-        }
-
-        // Execução do html2pdf convertendo em A4 Paisagem para acomodar as colunas de forma legível
-        const containerPdf = document.getElementById('pdf-render-area');
-        containerPdf.style.display = 'block';
-
-        const config = {
-            margin:       12,
-            filename:     `Comparativo_Revestimentos_${envName.replace(/\s+/g, '_')}.pdf`,
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2.5, useCORS: true },
-            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }
-        };
-
-        html2pdf().set(config).from(containerPdf).save().then(() => {
-            containerPdf.style.display = 'none';
-            closePdfModal();
+            calcState[`s${i}`] = { name: document.getElementById(`s${i}-name`).value, target, utype, spec, price, loss, qty, cost };
         });
     }
 
-    // Processamento de cálculo padrão ao inicializar a página
-    window.onload = () => {
-        calculateAll();
-    };
+    function openPdfModal() { document.getElementById('modal-pdf').style.display = 'flex'; }
+    function closePdfModal() { document.getElementById('modal-pdf').style.display = 'none'; }
+
+    function buildAndDownloadPdf() {
+        document.getElementById('pdf-meta-client').innerText = document.getElementById('pdf-client-input').value || 'Não Informado';
+        document.getElementById('pdf-meta-env').innerText = document.getElementById('pdf-env-input').value || 'Geral';
+        document.getElementById('pdf-meta-notes').innerText = document.getElementById('pdf-notes-input').value || 'Nenhuma';
+        document.getElementById('pdf-date').innerText = new Date().toLocaleDateString('pt-BR');
+
+        document.getElementById('pdf-geo-dim').innerText = `${calcState.geo.w.toFixed(2)} x ${calcState.geo.l.toFixed(2)}m`;
+        document.getElementById('pdf-geo-floor').innerText = `${calcState.geo.floor.toFixed(2)}m²`;
+        document.getElementById('pdf-geo-height').innerText = `${calcState.geo.h.toFixed(2)}m`;
+        document.getElementById('pdf-geo-perim').innerText = `${calcState.geo.perim.toFixed(2)}m`;
+        document.getElementById('pdf-geo-disc').innerText = `${calcState.geo.d.toFixed(2)}m²`;
+        document.getElementById('pdf-geo-wall').innerText = `${calcState.geo.wall.toFixed(2)}m²`;
+
+        [1, 2, 3].forEach(i => {
+            if (i === 3 && !isS3Active) return;
+            const s = calcState[`s${i}`];
+            document.getElementById(`pdf-s${i}-name`).innerText = s.name;
+            document.getElementById(`pdf-s${i}-target`).innerText = s.target;
+            document.getElementById(`pdf-s${i}-utype`).innerText = s.utype === 'm2' ? 'Metro²' : 'Peça';
+            document.getElementById(`pdf-s${i}-spec`).innerText = s.spec;
+            document.getElementById(`pdf-s${i}-uprice`).innerText = toBRL(s.price);
+            document.getElementById(`pdf-s${i}-loss`).innerText = `${s.loss}%`;
+            document.getElementById(`pdf-s${i}-vol`).innerText = s.utype === 'm2' ? `${s.qty} Cx` : `${s.qty} Und`;
+            document.getElementById(`pdf-s${i}-totalcost`).innerText = toBRL(s.cost);
+        });
+
+        const el = document.getElementById('pdf-render-area');
+        el.style.display = 'block';
+
+        const opt = {
+            margin:       [8, 10, 5, 10], // Margens reduzidas para forçar página única
+            filename:     'Comparativo.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }
+        };
+
+        html2pdf().set(opt).from(el).save().then(() => { el.style.display = 'none'; closePdfModal(); });
+    }
+
+    window.onload = calculateAll;
 </script>
 </body>
 </html>
